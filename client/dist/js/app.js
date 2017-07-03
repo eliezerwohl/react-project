@@ -36639,7 +36639,7 @@ var routes = {
     component: _LoginPage2.default
   }, {
     path: '/signup',
-    component: _LoginPage2.default
+    component: _SignUpPage2.default
   }]
 };
 
