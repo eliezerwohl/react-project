@@ -1,1 +1,4 @@
-index.json
+{
+  "dbUri": "mongodb://localhost/react_app",
+  "jwtSecret": "in the name of tragedy"
+}
