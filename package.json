@@ -3,16 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": { 
-        "start": "nodemon --use_strict index.js",
+  "scripts": {
+    "start": "nodemon --use_strict index.js",
     "bundle": "webpack"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
     "material-ui": "^0.18.5",
+    "mongoose": "^4.11.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router": "3.0.0",
