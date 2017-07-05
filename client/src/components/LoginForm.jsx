@@ -46,6 +46,7 @@ const LoginForm = ({
 
       <CardText>Don't have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
     </form>
+    <Link to={'/secret'}>secret</Link>
   </Card>
 );
 

@@ -1,10 +1,18 @@
 import Base from './components/Base.jsx';
 import HomePage from './components/HomePage.jsx';
+import Secret from './components/Secret.jsx';
 import DashboardPage from './containers/DashboardPage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
 import Auth from './modules/Auth';
 
+function authTeset(location, callback, target) {
+          if (Auth.isUserAuthenticated()) {
+          callback(null, target);
+        } else {
+          callback(null, HomePage);
+        }
+}
 
 const routes = {
   // base component (wrapper for the whole application).
@@ -14,11 +22,8 @@ const routes = {
     {
       path: '/',
       getComponent: (location, callback) => {
-        if (Auth.isUserAuthenticated()) {
-          callback(null, DashboardPage);
-        } else {
-          callback(null, HomePage);
-        }
+        authTest(location, callback, DashboardPage);
+
       }
     },
 
@@ -30,6 +35,13 @@ const routes = {
     {
       path: '/signup',
       component: SignUpPage
+    },
+    {
+      path: '/secret',
+      getComponent: (location, callback) => {
+        authTest(location, callback, Secret);
+
+      }
     },
 
     {
