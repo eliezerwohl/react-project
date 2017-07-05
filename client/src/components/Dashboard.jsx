@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { Link } from 'react-router';
 
 
 const Dashboard = ({ secretData }) => (
@@ -8,8 +9,8 @@ const Dashboard = ({ secretData }) => (
       title="Dashboard"
       subtitle="You should get access to this page only after authentication."
     />
-
-    {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData}</CardText>}
+    {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData} </CardText>}
+       <Link to={'/secret'}>secret</Link>
   </Card>
 );
 
