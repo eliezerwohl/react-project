@@ -4,9 +4,10 @@ import Secret from './components/Secret.jsx';
 import DashboardPage from './containers/DashboardPage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import SignUpPage from './containers/SignUpPage.jsx';
+import AppMain from './containers/AppMain.jsx';
 import Auth from './modules/Auth';
 
-function authTeset(location, callback, target) {
+function authTest(location, callback, target) {
           if (Auth.isUserAuthenticated()) {
           callback(null, target);
         } else {
@@ -43,7 +44,7 @@ const routes = {
 
       }
     },
-
+       
     {
       path: '/logout',
       onEnter: (nextState, replace) => {
