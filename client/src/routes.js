@@ -44,6 +44,13 @@ const routes = {
 
       }
     },
+     {
+      path: '/appMain',
+      getComponent: (location, callback) => {
+        authTest(location, callback, AppMain);
+
+      }
+    },
        
     {
       path: '/logout',
