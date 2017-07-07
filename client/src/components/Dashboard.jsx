@@ -10,7 +10,8 @@ const Dashboard = ({ secretData }) => (
       subtitle="You should get access to this page only after authentication."
     />
     {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>{secretData} </CardText>}
-       <Link to={'/secret'}>secret</Link>
+       <Link to={'/appmain'}>search main</Link>
+       <Link to={'/datamain'}>data will go here</Link>
   </Card>
 );
 
