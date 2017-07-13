@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoForm from '../components/TodoForm.jsx';
 import TodoList from '../components/TodoList.jsx';
+import axios from 'axios';
  
 class AppMain extends Component {
  
@@ -13,13 +14,19 @@ class AppMain extends Component {
         // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
     }
     loadTodosFromServer() {
-      // axios.get(this.props.url + '/api' )
-          const xhr = new XMLHttpRequest();
-    xhr.open('post', '/test');
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
-      if (xhr.status === 200) {
+      axios.post('/test' )
+       .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    //       const xhr = new XMLHttpRequest();
+    // xhr.open('post', '/test');
+    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // xhr.responseType = 'json';
+    // xhr.addEventListener('load', () => {
+    //   if (xhr.status === 200) {
         // success
 
         // change the component-container state
@@ -28,22 +35,22 @@ class AppMain extends Component {
         // });
 
         // set a message
-        console.log(xhr.response.message)
-        localStorage.setItem('successMessage', xhr.response.message);
+    //     console.log(xhr.response.message)
+    //     localStorage.setItem('successMessage', xhr.response.message);
 
-        // make a redirect
-      } else {
-        // failure
+    //     // make a redirect
+    //   } else {
+    //     // failure
 
-        // const errors = xhr.response.errors ? xhr.response.errors : {};
-        // errors.summary = xhr.response.message;
+    //     // const errors = xhr.response.errors ? xhr.response.errors : {};
+    //     // errors.summary = xhr.response.message;
 
-        this.setState({
-          // errors
-        });
-      }
-    });
-    xhr.send("foo=bar&lorem=ipsum");
+    //     this.setState({
+    //       // errors
+    //     });
+    //   }
+    // });
+    // xhr.send("foo=bar&lorem=ipsum");
         
 
     }
