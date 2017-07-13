@@ -14,43 +14,13 @@ class AppMain extends Component {
         // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
     }
     loadTodosFromServer() {
-      axios.post('/test' )
+      axios.post('/mainapi' )
        .then(res => {
                 console.log(res)
             })
             .catch(err => {
                 console.error(err);
             });
-    //       const xhr = new XMLHttpRequest();
-    // xhr.open('post', '/test');
-    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // xhr.responseType = 'json';
-    // xhr.addEventListener('load', () => {
-    //   if (xhr.status === 200) {
-        // success
-
-        // change the component-container state
-        // this.setState({
-        //   errors: {}
-        // });
-
-        // set a message
-    //     console.log(xhr.response.message)
-    //     localStorage.setItem('successMessage', xhr.response.message);
-
-    //     // make a redirect
-    //   } else {
-    //     // failure
-
-    //     // const errors = xhr.response.errors ? xhr.response.errors : {};
-    //     // errors.summary = xhr.response.message;
-
-    //     this.setState({
-    //       // errors
-    //     });
-    //   }
-    // });
-    // xhr.send("foo=bar&lorem=ipsum");
         
 
     }

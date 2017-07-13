@@ -33,7 +33,7 @@ const apiRoutes = require('./server/routes/api');
 const routeApiRoutes = require('./server/routes/routeapi');
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
-app.use('/test', routeApiRoutes);
+app.use('/mainapi', routeApiRoutes);
 
 
 // start the server
