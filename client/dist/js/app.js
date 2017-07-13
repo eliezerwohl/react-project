@@ -43901,42 +43901,11 @@ var AppMain = function (_Component) {
     _createClass(AppMain, [{
         key: 'loadTodosFromServer',
         value: function loadTodosFromServer() {
-            _axios2.default.post('/test').then(function (res) {
+            _axios2.default.post('/mainapi').then(function (res) {
                 console.log(res);
             }).catch(function (err) {
                 console.error(err);
             });
-            //       const xhr = new XMLHttpRequest();
-            // xhr.open('post', '/test');
-            // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            // xhr.responseType = 'json';
-            // xhr.addEventListener('load', () => {
-            //   if (xhr.status === 200) {
-            // success
-
-            // change the component-container state
-            // this.setState({
-            //   errors: {}
-            // });
-
-            // set a message
-            //     console.log(xhr.response.message)
-            //     localStorage.setItem('successMessage', xhr.response.message);
-
-            //     // make a redirect
-            //   } else {
-            //     // failure
-
-            //     // const errors = xhr.response.errors ? xhr.response.errors : {};
-            //     // errors.summary = xhr.response.message;
-
-            //     this.setState({
-            //       // errors
-            //     });
-            //   }
-            // });
-            // xhr.send("foo=bar&lorem=ipsum");
-
         }
         // handleTodoSubmit(comment) {
         //     let comments = this.state.data;
