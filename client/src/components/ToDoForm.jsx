@@ -18,7 +18,7 @@ export default  class TodoForm extends Component {
  
     handleSubmit(e) {
         e.preventDefault();
-        debugger
+  
         let title = this.state.title.trim();
         let description = this.state.description.trim();
         if (!description || !title) {
@@ -42,7 +42,7 @@ export default  class TodoForm extends Component {
                     <label for="">Description</label>
                     <input value={ this.state.description } onChange={ this.handleDescriptionChange } />
                 </div>
-          
+      
                 <button type="submit" className="btn btn-primary">Add</button>
                 <button type="cancel" className="btn btn-danger">Cancel</button>
             </form>
