@@ -9,12 +9,11 @@ class AppMain extends Component {
         super(props);
         this.state = { data: [] };
         this.loadTodosFromServer = this.loadTodosFromServer.bind(this);
-        // this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
+        this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
         // this.handleTodoDelete = this.handleTodoDelete.bind(this);
         // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
     }
     loadTodosFromServer() {
-      debugger
       axios.post('/mainapi' )
        .then(res => {
                 console.log(res)
@@ -25,17 +24,17 @@ class AppMain extends Component {
         
 
     }
-    // handleTodoSubmit(comment) {
-    //     let comments = this.state.data;
-    //     comment.id = Date.now();
-    //     let newComments = comments.concat([comment]);
-    //     this.setState({ data: newComments });
-    //     axios.post(this.props.url + '/api'+'/todo/'+comment.id, comment)
-    //         .catch(err => {
-    //             console.error(err);
-    //             this.setState({ data: comments });
-    //         });
-    // }
+    handleTodoSubmit(comment) {
+        let comments = this.state.data;
+        comment.id = Date.now();
+        let newComments = comments.concat([comment]);
+        this.setState({ data: newComments });
+        axios.post(this.props.url + '/api'+'/todo/'+comment.id, comment)
+            .catch(err => {
+                console.error(err);
+                this.setState({ data: comments });
+            });
+    }
     // handleTodoDelete(id) {
     //     axios.delete(`${this.props.url + '/api'}/${id}`)
     //         .then(res => {
@@ -65,6 +64,9 @@ class AppMain extends Component {
   
           <h2>Welcome to React+ Express +Mongo</h2>
         </div>
+         <TodoList data={ this.state.data }/>
+         <TodoForm/>
+
 
  
  

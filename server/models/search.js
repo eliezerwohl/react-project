@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 // define the Search model schema
 const SearchSchema = new mongoose.Schema({
-  name: String,
+  title: String,
+  description:String,
   date: String
 });
 
