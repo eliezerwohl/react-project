@@ -44571,7 +44571,8 @@ var AppMain = function (_Component) {
 
         _this.state = { data: [] };
         _this.loadTodosFromServer = _this.loadTodosFromServer.bind(_this);
-        _this.handleTodoSubmit = _this.handleTodoSubmit.bind(_this);
+        _this.handleCommentSubmit = _this.handleCommentSubmit.bind(_this);
+        // this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
         // this.handleTodoDelete = this.handleTodoDelete.bind(this);
         // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
         return _this;
@@ -44580,6 +44581,7 @@ var AppMain = function (_Component) {
     _createClass(AppMain, [{
         key: 'loadTodosFromServer',
         value: function loadTodosFromServer() {
+            debugger;
             _axios2.default.post('/mainapi').then(function (res) {
                 console.log(res);
             }).catch(function (err) {
@@ -44587,15 +44589,16 @@ var AppMain = function (_Component) {
             });
         }
     }, {
-        key: 'handleTodoSubmit',
-        value: function handleTodoSubmit(comment) {
+        key: 'handleCommentSubmit',
+        value: function handleCommentSubmit(comment) {
             var _this2 = this;
 
-            var comments = this.state.data;
-            comment.id = Date.now();
-            var newComments = comments.concat([comment]);
-            this.setState({ data: newComments });
-            _axios2.default.post(this.props.url + '/api' + '/todo/' + comment.id, comment).catch(function (err) {
+            // let comments = this.state.data;
+            // comment.id = Date.now();
+            // let newComments = comments.concat([comment]);
+            // this.setState({ data: newComments });
+            // axios.post(this.props.url + '/mainapi'+'/todo/'+comment.id, comment)
+            _axios2.default.post('/mainapi', comment).catch(function (err) {
                 console.error(err);
                 _this2.setState({ data: comments });
             });
@@ -44639,7 +44642,7 @@ var AppMain = function (_Component) {
                     )
                 ),
                 _react2.default.createElement(_TodoList2.default, { data: this.state.data }),
-                _react2.default.createElement(_TodoForm2.default, null)
+                _react2.default.createElement(_TodoForm2.default, { onCommentSubmit: this.handleCommentSubmit })
             );
         }
     }]);
@@ -44703,7 +44706,7 @@ var TodoForm = function (_Component) {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-            debugger;
+
             var title = this.state.title.trim();
             var description = this.state.description.trim();
             if (!description || !title) {
