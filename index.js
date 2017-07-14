@@ -37,6 +37,6 @@ app.use('/mainapi', routeApiRoutes);
 
 
 // start the server
-app.listen(9000, () => {
-  console.log('Server is over 9000!  no wait, its just at 9000.  damnit it nappa!');
+app.listen(8080, () => {
+  console.log('Server is over 9000!  no wait, its just at 8080.  damnit it nappa!');
 });

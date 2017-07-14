@@ -13,8 +13,7 @@ module.exports.connect = (uri) => {
   });
 
   mongoose.connection.on('open', (err) => {
-  	
-    console.error(`we are open`);
+    console.log('we are open');
 
   });
 
