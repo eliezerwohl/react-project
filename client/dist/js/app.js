@@ -43901,6 +43901,7 @@ var AppMain = function (_Component) {
     _createClass(AppMain, [{
         key: 'loadTodosFromServer',
         value: function loadTodosFromServer() {
+            debugger;
             _axios2.default.post('/mainapi').then(function (res) {
                 console.log(res);
             }).catch(function (err) {

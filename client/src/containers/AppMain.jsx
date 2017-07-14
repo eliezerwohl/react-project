@@ -14,6 +14,7 @@ class AppMain extends Component {
         // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
     }
     loadTodosFromServer() {
+      debugger
       axios.post('/mainapi' )
        .then(res => {
                 console.log(res)
