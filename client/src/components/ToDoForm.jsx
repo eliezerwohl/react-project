@@ -3,20 +3,29 @@ import React, { Component } from 'react';
 export default  class TodoForm extends Component {
     constructor(props) {
         super(props);
-        this.state = { author: '', text: '' };
- 
+        this.state = { title: '', description: '' };
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+     handleTitleChange(e) {
+ 			this.setState({ title: e.target.value });
+ }
+   handleDescriptionChange(e) {
+ 			this.setState({ description: e.target.value });
+ }
+
  
     handleSubmit(e) {
         e.preventDefault();
-        let author = this.state.author.trim();
-        let text = this.state.text.trim();
-        if (!text || !author) {
+        debugger
+        let title = this.state.title.trim();
+        let description = this.state.description.trim();
+        if (!description || !title) {
             return;
         }
-        this.props.onCommentSubmit({ author: author, text: text });
-        this.setState({ author: '', text: '' });
+        this.props.onCommentSubmit({ title: title, description: description });
+        this.setState({ title: '', description: '' });
     }
     render() {
         return (
@@ -26,31 +35,14 @@ export default  class TodoForm extends Component {
             <form  onSubmit={ this.handleSubmit }>
                 <div className="form-group">
                     <label for="exampleInputEmail1">Title</label>
-                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title"/>
+                    <input value={ this.state.title } onChange={ this.handleTitleChange } />
  
                 </div>
-                <div className="form-group">
-                    <label for="exampleSelect1">Priority</label>
-                    <select className="form-control" id="exampleSelect1">
-                        <option>High</option>
-                        <option>Medium</option>
-                        <option>Normal</option>
- 
-                    </select>
+                 <div className="form-group">
+                    <label for="">Description</label>
+                    <input value={ this.state.description } onChange={ this.handleDescriptionChange } />
                 </div>
-                <div className="form-group">
-                    <label for="exampleTextarea">Description</label>
-                    <input type="text" className="form-control" id="exampleTextarea"placeholder="Description"/>
-                </div>
-                <div className="form-group">
-                    <label for="datetimepicker1">Due date</label>
-                    <div className='input-group date' id='datetimepicker1'>
-                        <input type='text' className="form-control" />
-                        <span className="input-group-addon">
-                        <span className="glyphicon glyphicon-calendar"></span>
-                    </span>
-                    </div>
-                </div>
+          
                 <button type="submit" className="btn btn-primary">Add</button>
                 <button type="cancel" className="btn btn-danger">Cancel</button>
             </form>
