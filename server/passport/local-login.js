@@ -38,11 +38,9 @@ module.exports = new PassportLocalStrategy({
       if (!isMatch) {
         const error = new Error('Incorrect email or password');
         error.name = 'IncorrectCredentialsError';
-
         return done(error);
       }
       req.login(user, function(err) {
-        debugger
 
       });
       const payload = {

@@ -4,8 +4,6 @@ const passport = require('passport');
 const config = require('./config');
 var session = require('express-session')
 
-var cookieParser = require('cookie-parser');
-
 // connect to the database and load models
 require('./server/models').connect(config.dbUri);
 
