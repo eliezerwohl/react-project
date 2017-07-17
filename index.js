@@ -2,13 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./config');
+var session = require('express-session')
+
+var cookieParser = require('cookie-parser');
 
 // connect to the database and load models
 require('./server/models').connect(config.dbUri);
 
 const app = express();
-
-
+app.use(session({secret: 'yourothersecretcode', saveUninitialized: true, resave: true}));
 // tell the app to look for static files in these directories
 app.use(express.static('./server/static/'));
 app.use(express.static('./client/dist/'));
@@ -17,12 +19,27 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 // pass the passport middleware
 app.use(passport.initialize());
+app.use(passport.session());
 
+passport.serializeUser(function (user, done) {
+	debugger
+	console.log("2")
+    done(null, user.id);
+});
+
+	passport.deserializeUser(function(user, done) {
+		done(null, user);
+	});
 // load passport strategies
 const localSignupStrategy = require('./server/passport/local-signup');
 const localLoginStrategy = require('./server/passport/local-login');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
+
+passport.deserializeUser(function (id, done) {
+    // don't have access to request object here
+});
+
 
 // pass the authenticaion checker middleware
 const authCheckMiddleware = require('./server/middleware/auth-check');
