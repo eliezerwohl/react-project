@@ -44581,12 +44581,16 @@ var AppMain = function (_Component) {
     _createClass(AppMain, [{
         key: 'loadTodosFromServer',
         value: function loadTodosFromServer() {
-            debugger;
-            _axios2.default.post('/mainapi').then(function (res) {
-                console.log(res);
-            }).catch(function (err) {
-                console.error(err);
-            });
+
+            // axios.post('/mainapi' )
+            //  .then(res => {
+            //           console.log(res)
+            //       })
+            //       .catch(err => {
+            //           console.error(err);
+            //       });
+
+
         }
     }, {
         key: 'handleCommentSubmit',
@@ -44598,7 +44602,7 @@ var AppMain = function (_Component) {
             // let newComments = comments.concat([comment]);
             // this.setState({ data: newComments });
             // axios.post(this.props.url + '/mainapi'+'/todo/'+comment.id, comment)
-            _axios2.default.post('/mainapi', comment).catch(function (err) {
+            _axios2.default.post('/mainapi/create/search', comment).catch(function (err) {
                 console.error(err);
                 _this2.setState({ data: comments });
             });

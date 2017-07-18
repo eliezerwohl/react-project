@@ -15,14 +15,14 @@ class AppMain extends Component {
         // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
     }
     loadTodosFromServer() {
-      debugger
-      axios.post('/mainapi' )
-       .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.error(err);
-            });
+      
+      // axios.post('/mainapi' )
+      //  .then(res => {
+      //           console.log(res)
+      //       })
+      //       .catch(err => {
+      //           console.error(err);
+      //       });
         
 
     }
@@ -32,7 +32,7 @@ class AppMain extends Component {
         // let newComments = comments.concat([comment]);
         // this.setState({ data: newComments });
         // axios.post(this.props.url + '/mainapi'+'/todo/'+comment.id, comment)
-        axios.post('/mainapi', comment)
+        axios.post('/mainapi/create/search', comment)
             .catch(err => {
                 console.error(err);
                 this.setState({ data: comments });
