@@ -44581,16 +44581,11 @@ var AppMain = function (_Component) {
     _createClass(AppMain, [{
         key: 'loadTodosFromServer',
         value: function loadTodosFromServer() {
-
-            // axios.post('/mainapi' )
-            //  .then(res => {
-            //           console.log(res)
-            //       })
-            //       .catch(err => {
-            //           console.error(err);
-            //       });
-
-
+            _axios2.default.post('/mainapi').then(function (res) {
+                console.log(res);
+            }).catch(function (err) {
+                console.error(err);
+            });
         }
     }, {
         key: 'handleCommentSubmit',

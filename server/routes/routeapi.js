@@ -8,8 +8,7 @@ router.post('/create/search', (req, res, next) => {
     description:req.body.description,
     _user:req.session.passport.id
   }).then(function(data, error) {
-  	debugger
-    res.send('/auth?msg=Venue created.');
+    res.send('created');
   })
 });
 
