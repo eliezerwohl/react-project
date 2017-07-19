@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const SearchSchema = new mongoose.Schema({
   title: String,
   description:String,
-  date: String,
-  _user:{ type: Number, ref: 'User' },
+  date: Date,
+  _user:{ type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 module.exports = mongoose.model('Search', SearchSchema);
