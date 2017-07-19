@@ -20,14 +20,14 @@ export default  class TodoForm extends Component {
  
     handleSubmit(e) {
         e.preventDefault();
-  
+  			let date = this.state.date.trim();
         let title = this.state.title.trim();
         let description = this.state.description.trim();
-        if (!description || !title) {
+        if (!description || !title || !date) {
             return;
         }
-        this.props.onCommentSubmit({ title: title, description: description });
-        this.setState({ title: '', description: '' });
+        this.props.onCommentSubmit({ date:date, title: title, description: description });
+        this.setState({ title: '', description: '', date: new Date().toISOString().substring(0, 16) });
     }
     render() {
         return (

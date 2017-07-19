@@ -44710,14 +44710,14 @@ var TodoForm = function (_Component) {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-
+            var date = this.state.date.trim();
             var title = this.state.title.trim();
             var description = this.state.description.trim();
-            if (!description || !title) {
+            if (!description || !title || !date) {
                 return;
             }
-            this.props.onCommentSubmit({ title: title, description: description });
-            this.setState({ title: '', description: '' });
+            this.props.onCommentSubmit({ date: date, title: title, description: description });
+            this.setState({ title: '', description: '', date: new Date().toISOString().substring(0, 16) });
         }
     }, {
         key: 'render',
