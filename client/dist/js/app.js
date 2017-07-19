@@ -44684,7 +44684,7 @@ var TodoForm = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (TodoForm.__proto__ || Object.getPrototypeOf(TodoForm)).call(this, props));
 
-        _this.state = { title: '', description: '' };
+        _this.state = { title: '', description: '', date: new Date().toISOString().substring(0, 16) };
         _this.handleTitleChange = _this.handleTitleChange.bind(_this);
         _this.handleDescriptionChange = _this.handleDescriptionChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -44695,6 +44695,11 @@ var TodoForm = function (_Component) {
         key: 'handleTitleChange',
         value: function handleTitleChange(e) {
             this.setState({ title: e.target.value });
+        }
+    }, {
+        key: 'handleDateChange',
+        value: function handleDateChange(e) {
+            this.setState({ date: e.target.value });
         }
     }, {
         key: 'handleDescriptionChange',
@@ -44737,6 +44742,16 @@ var TodoForm = function (_Component) {
                             'Title'
                         ),
                         _react2.default.createElement('input', { value: this.state.title, onChange: this.handleTitleChange })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'form-group' },
+                        _react2.default.createElement(
+                            'label',
+                            { 'for': 'exampleInputEmail1' },
+                            'date'
+                        ),
+                        _react2.default.createElement('input', { type: 'datetime-local', value: this.state.date, onChange: this.handleDateChange })
                     ),
                     _react2.default.createElement(
                         'div',
