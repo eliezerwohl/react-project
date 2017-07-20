@@ -15,13 +15,14 @@ class AppMain extends Component {
         // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
     }
     loadTodosFromServer() {
-      axios.post('/mainapi' )
-       .then(res => {
-                console.log(res)
+    axios.get("/mainapi/view/search")
+            .then(res => {
+                this.setState({ data: res.data });
             })
             .catch(err => {
                 console.error(err);
             });
+  
         
 
     }
