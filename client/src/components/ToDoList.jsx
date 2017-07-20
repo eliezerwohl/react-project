@@ -5,7 +5,7 @@ export default class TodoList extends Component {
     render() {
         let todoNodes = this.props.data.map(todo => {
             return (
-                <div className="panel panel-primary">
+                <div key={todo.id} className="panel panel-primary">
                     Title : {todo.title}
                 </div>
             )
