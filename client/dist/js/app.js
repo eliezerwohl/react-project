@@ -44625,7 +44625,7 @@ var AppMain = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.loadTodosFromServer();
-            // setInterval(this.loadTodosFromServer, this.props.pollInterval);
+            setInterval(this.loadTodosFromServer, 2000);
         }
     }, {
         key: 'render',
@@ -44825,7 +44825,7 @@ var TodoList = function (_Component) {
             var todoNodes = this.props.data.map(function (todo) {
                 return _react2.default.createElement(
                     "div",
-                    { className: "panel panel-primary" },
+                    { key: todo.id, className: "panel panel-primary" },
                     "Title : ",
                     todo.title
                 );

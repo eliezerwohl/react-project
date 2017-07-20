@@ -56,7 +56,7 @@ class AppMain extends Component {
     // }
     componentDidMount() {
         this.loadTodosFromServer();
-        // setInterval(this.loadTodosFromServer, this.props.pollInterval);
+        setInterval(this.loadTodosFromServer, 2000);
     }
  
  

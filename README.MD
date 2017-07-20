@@ -4,5 +4,7 @@ A few things I need to remember for debugging:
 
 $ npm run-script debug
 
+chrome:inspect
+
 
 chrome://inspect/#devices

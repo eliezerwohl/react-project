@@ -17,7 +17,6 @@ router.get('/view/search', (req, res, next) => {
 	Search.find({
     _user:req.session.passport.user
   }).then(function(data, error) {
-  	debugger
     res.send(data);
   })
 });
