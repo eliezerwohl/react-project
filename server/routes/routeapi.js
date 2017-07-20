@@ -9,7 +9,8 @@ router.post('/create/search', (req, res, next) => {
     description:req.body.description,
     _user:req.session.passport.user
   }).then(function(data, error) {
-    res.send('created');
+
+    res.send(data._doc);
   })
 });
 
