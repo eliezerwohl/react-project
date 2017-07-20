@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default  class TodoForm extends Component {
   constructor(props) {
       super(props);
-      this.state = { title: '', description: '', date: new Date().toISOString().substring(0, 16) };
+      this.state = { title: '', description: '', date: new Date(new Date() + "UTC").toISOString().substring(0, 16) };
       this.handleTitleChange = this.handleTitleChange.bind(this);
       this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);

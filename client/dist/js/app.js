@@ -44684,7 +44684,7 @@ var TodoForm = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (TodoForm.__proto__ || Object.getPrototypeOf(TodoForm)).call(this, props));
 
-        _this.state = { title: '', description: '', date: new Date().toISOString().substring(0, 16) };
+        _this.state = { title: '', description: '', date: new Date(new Date() + "UTC").toISOString().substring(0, 16) };
         _this.handleTitleChange = _this.handleTitleChange.bind(_this);
         _this.handleDescriptionChange = _this.handleDescriptionChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
