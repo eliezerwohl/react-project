@@ -44599,9 +44599,13 @@ var AppMain = function (_Component) {
             // let newComments = comments.concat([comment]);
             // this.setState({ data: newComments });
             // axios.post(this.props.url + '/mainapi'+'/todo/'+comment.id, comment)
-            _axios2.default.post('/mainapi/create/search', comment).catch(function (err) {
+            _axios2.default.post('/mainapi/create/search', comment).then(function (data) {
+                var comments = _this3.state.data;
+                var newComments = comments.concat([data.data]);
+                _this3.setState({ data: newComments });
+                debugger;
+            }).catch(function (err) {
                 console.error(err);
-                _this3.setState({ data: comments });
             });
         }
         // handleTodoDelete(id) {
@@ -44625,7 +44629,7 @@ var AppMain = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.loadTodosFromServer();
-            setInterval(this.loadTodosFromServer, 2000);
+            setInterval(this.loadTodosFromServer, 20000);
         }
     }, {
         key: 'render',
@@ -44825,7 +44829,7 @@ var TodoList = function (_Component) {
             var todoNodes = this.props.data.map(function (todo) {
                 return _react2.default.createElement(
                     "div",
-                    { key: todo.id, className: "panel panel-primary" },
+                    { key: todo._id, className: "panel panel-primary" },
                     "Title : ",
                     todo.title
                 );

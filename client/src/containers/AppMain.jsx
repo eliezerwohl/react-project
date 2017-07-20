@@ -33,9 +33,14 @@ class AppMain extends Component {
         // this.setState({ data: newComments });
         // axios.post(this.props.url + '/mainapi'+'/todo/'+comment.id, comment)
         axios.post('/mainapi/create/search', comment)
+            .then(data => {
+              let comments = this.state.data;
+              let newComments = comments.concat([data.data]);
+        this.setState({ data: newComments });
+        debugger
+            })
             .catch(err => {
                 console.error(err);
-                this.setState({ data: comments });
             });
     }
     // handleTodoDelete(id) {
@@ -56,7 +61,7 @@ class AppMain extends Component {
     // }
     componentDidMount() {
         this.loadTodosFromServer();
-        setInterval(this.loadTodosFromServer, 2000);
+        setInterval(this.loadTodosFromServer, 20000);
     }
  
  
