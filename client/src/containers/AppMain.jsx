@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TodoForm from '../components/TodoForm.jsx';
-import TodoList from '../components/TodoList.jsx';
+import SearchForm from '../components/SearchForm.jsx';
+import SearchList from '../components/SearchList.jsx';
 import axios from 'axios';
  
 class AppMain extends Component {
@@ -8,13 +8,13 @@ class AppMain extends Component {
     constructor(props) {
         super(props);
         this.state = { data: [] };
-        this.loadTodosFromServer = this.loadTodosFromServer.bind(this);
+        this.loadSearchsFromServer = this.loadSearchsFromServer.bind(this);
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
-        // this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
-        // this.handleTodoDelete = this.handleTodoDelete.bind(this);
-        // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
+        // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+        // this.handleSearchDelete = this.handleSearchDelete.bind(this);
+        // this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
     }
-    loadTodosFromServer() {
+    loadSearchsFromServer() {
     axios.get("/mainapi/view/search")
             .then(res => {
                 this.setState({ data: res.data });
@@ -31,19 +31,18 @@ class AppMain extends Component {
         // comment.id = Date.now();
         // let newComments = comments.concat([comment]);
         // this.setState({ data: newComments });
-        // axios.post(this.props.url + '/mainapi'+'/todo/'+comment.id, comment)
+        // axios.post(this.props.url + '/mainapi'+'/Search/'+comment.id, comment)
         axios.post('/mainapi/create/search', comment)
             .then(data => {
               let comments = this.state.data;
               let newComments = comments.concat([data.data]);
         this.setState({ data: newComments });
-        debugger
             })
             .catch(err => {
                 console.error(err);
             });
     }
-    // handleTodoDelete(id) {
+    // handleSearchDelete(id) {
     //     axios.delete(`${this.props.url + '/api'}/${id}`)
     //         .then(res => {
     //             console.log('Comment deleted');
@@ -52,7 +51,7 @@ class AppMain extends Component {
     //             console.error(err);
     //         });
     // }
-    // handleTodoUpdate(id, comment) {
+    // handleSearchUpdate(id, comment) {
     //     //sends the comment id and new author/text to our api
     //     axios.put(`${this.props.url + '/api'}/${id}`, comment)
     //         .catch(err => {
@@ -60,8 +59,9 @@ class AppMain extends Component {
     //         })
     // }
     componentDidMount() {
-        this.loadTodosFromServer();
-        setInterval(this.loadTodosFromServer, 20000);
+        this.loadSearchsFromServer();
+        //setinterval is throwing an error
+        setInterval(this.loadSearchsFromServer, 20000);
     }
  
  
@@ -70,10 +70,10 @@ class AppMain extends Component {
       <div className="App">
         <div className="App-header">
   
-          <h2>Welcome to React+ Express +Mongo</h2>
+          <h2>Pick a search or add a new one</h2>
         </div>
-         <TodoList data={ this.state.data }/>
-         <TodoForm onCommentSubmit={ this.handleCommentSubmit }/>
+         <SearchList data={ this.state.data }/>
+         <SearchForm onCommentSubmit={ this.handleCommentSubmit }/>
 
 
  

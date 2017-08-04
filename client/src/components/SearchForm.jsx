@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
  
-export default  class TodoForm extends Component {
+export default  class SearchForm extends Component {
   constructor(props) {
       super(props);
       this.state = { title: '', description: '', date: new Date(new Date() + "UTC").toISOString().substring(0, 16) };
@@ -32,7 +32,7 @@ export default  class TodoForm extends Component {
     render() {
         return (
        		<div>
-            <h1> Add new Todo</h1>
+            <h1> Add new Job Search</h1>
             <form  onSubmit={ this.handleSubmit }>
                 <div className="form-group">
                     <label for="exampleInputEmail1">Title</label>

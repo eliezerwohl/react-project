@@ -44541,13 +44541,13 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _TodoForm = __webpack_require__(478);
+var _SearchForm = __webpack_require__(499);
 
-var _TodoForm2 = _interopRequireDefault(_TodoForm);
+var _SearchForm2 = _interopRequireDefault(_SearchForm);
 
-var _TodoList = __webpack_require__(479);
+var _SearchList = __webpack_require__(500);
 
-var _TodoList2 = _interopRequireDefault(_TodoList);
+var _SearchList2 = _interopRequireDefault(_SearchList);
 
 var _axios = __webpack_require__(480);
 
@@ -44570,17 +44570,17 @@ var AppMain = function (_Component) {
         var _this = _possibleConstructorReturn(this, (AppMain.__proto__ || Object.getPrototypeOf(AppMain)).call(this, props));
 
         _this.state = { data: [] };
-        _this.loadTodosFromServer = _this.loadTodosFromServer.bind(_this);
+        _this.loadSearchsFromServer = _this.loadSearchsFromServer.bind(_this);
         _this.handleCommentSubmit = _this.handleCommentSubmit.bind(_this);
-        // this.handleTodoSubmit = this.handleTodoSubmit.bind(this);
-        // this.handleTodoDelete = this.handleTodoDelete.bind(this);
-        // this.handleTodoUpdate = this.handleTodoUpdate.bind(this);
+        // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+        // this.handleSearchDelete = this.handleSearchDelete.bind(this);
+        // this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
         return _this;
     }
 
     _createClass(AppMain, [{
-        key: 'loadTodosFromServer',
-        value: function loadTodosFromServer() {
+        key: 'loadSearchsFromServer',
+        value: function loadSearchsFromServer() {
             var _this2 = this;
 
             _axios2.default.get("/mainapi/view/search").then(function (res) {
@@ -44598,17 +44598,16 @@ var AppMain = function (_Component) {
             // comment.id = Date.now();
             // let newComments = comments.concat([comment]);
             // this.setState({ data: newComments });
-            // axios.post(this.props.url + '/mainapi'+'/todo/'+comment.id, comment)
+            // axios.post(this.props.url + '/mainapi'+'/Search/'+comment.id, comment)
             _axios2.default.post('/mainapi/create/search', comment).then(function (data) {
                 var comments = _this3.state.data;
                 var newComments = comments.concat([data.data]);
                 _this3.setState({ data: newComments });
-                debugger;
             }).catch(function (err) {
                 console.error(err);
             });
         }
-        // handleTodoDelete(id) {
+        // handleSearchDelete(id) {
         //     axios.delete(`${this.props.url + '/api'}/${id}`)
         //         .then(res => {
         //             console.log('Comment deleted');
@@ -44617,7 +44616,7 @@ var AppMain = function (_Component) {
         //             console.error(err);
         //         });
         // }
-        // handleTodoUpdate(id, comment) {
+        // handleSearchUpdate(id, comment) {
         //     //sends the comment id and new author/text to our api
         //     axios.put(`${this.props.url + '/api'}/${id}`, comment)
         //         .catch(err => {
@@ -44628,8 +44627,9 @@ var AppMain = function (_Component) {
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.loadTodosFromServer();
-            setInterval(this.loadTodosFromServer, 20000);
+            this.loadSearchsFromServer();
+            //setinterval is throwing an error
+            setInterval(this.loadSearchsFromServer, 20000);
         }
     }, {
         key: 'render',
@@ -44643,11 +44643,11 @@ var AppMain = function (_Component) {
                     _react2.default.createElement(
                         'h2',
                         null,
-                        'Welcome to React+ Express +Mongo'
+                        'Pick a search or add a new one'
                     )
                 ),
-                _react2.default.createElement(_TodoList2.default, { data: this.state.data }),
-                _react2.default.createElement(_TodoForm2.default, { onCommentSubmit: this.handleCommentSubmit })
+                _react2.default.createElement(_SearchList2.default, { data: this.state.data }),
+                _react2.default.createElement(_SearchForm2.default, { onCommentSubmit: this.handleCommentSubmit })
             );
         }
     }]);
@@ -44658,201 +44658,8 @@ var AppMain = function (_Component) {
 exports.default = AppMain;
 
 /***/ }),
-/* 478 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TodoForm = function (_Component) {
-    _inherits(TodoForm, _Component);
-
-    function TodoForm(props) {
-        _classCallCheck(this, TodoForm);
-
-        var _this = _possibleConstructorReturn(this, (TodoForm.__proto__ || Object.getPrototypeOf(TodoForm)).call(this, props));
-
-        _this.state = { title: '', description: '', date: new Date(new Date() + "UTC").toISOString().substring(0, 16) };
-        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
-        _this.handleDescriptionChange = _this.handleDescriptionChange.bind(_this);
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        return _this;
-    }
-
-    _createClass(TodoForm, [{
-        key: 'handleTitleChange',
-        value: function handleTitleChange(e) {
-            this.setState({ title: e.target.value });
-        }
-    }, {
-        key: 'handleDateChange',
-        value: function handleDateChange(e) {
-            this.setState({ date: e.target.value });
-        }
-    }, {
-        key: 'handleDescriptionChange',
-        value: function handleDescriptionChange(e) {
-            this.setState({ description: e.target.value });
-        }
-    }, {
-        key: 'handleSubmit',
-        value: function handleSubmit(e) {
-            e.preventDefault();
-            var date = this.state.date.trim();
-            var title = this.state.title.trim();
-            var description = this.state.description.trim();
-            if (!description || !title || !date) {
-                return;
-            }
-            this.props.onCommentSubmit({ date: date, title: title, description: description });
-            this.setState({ title: '', description: '', date: new Date().toISOString().substring(0, 16) });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    ' Add new Todo'
-                ),
-                _react2.default.createElement(
-                    'form',
-                    { onSubmit: this.handleSubmit },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        _react2.default.createElement(
-                            'label',
-                            { 'for': 'exampleInputEmail1' },
-                            'Title'
-                        ),
-                        _react2.default.createElement('input', { value: this.state.title, onChange: this.handleTitleChange })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        _react2.default.createElement(
-                            'label',
-                            { 'for': 'exampleInputEmail1' },
-                            'date'
-                        ),
-                        _react2.default.createElement('input', { type: 'datetime-local', value: this.state.date, onChange: this.handleDateChange })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        _react2.default.createElement(
-                            'label',
-                            { 'for': '' },
-                            'Description'
-                        ),
-                        _react2.default.createElement('input', { value: this.state.description, onChange: this.handleDescriptionChange })
-                    ),
-                    _react2.default.createElement(
-                        'button',
-                        { type: 'submit', className: 'btn btn-primary' },
-                        'Add'
-                    ),
-                    _react2.default.createElement(
-                        'button',
-                        { type: 'cancel', className: 'btn btn-danger' },
-                        'Cancel'
-                    )
-                )
-            );
-        }
-    }]);
-
-    return TodoForm;
-}(_react.Component);
-
-exports.default = TodoForm;
-
-/***/ }),
-/* 479 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TodoList = function (_Component) {
-    _inherits(TodoList, _Component);
-
-    function TodoList() {
-        _classCallCheck(this, TodoList);
-
-        return _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).apply(this, arguments));
-    }
-
-    _createClass(TodoList, [{
-        key: "render",
-        value: function render() {
-            var todoNodes = this.props.data.map(function (todo) {
-                return _react2.default.createElement(
-                    "div",
-                    { key: todo._id, className: "panel panel-primary" },
-                    "Title : ",
-                    todo.title
-                );
-            });
-            return _react2.default.createElement(
-                "div",
-                { className: "panel panel-success" },
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    " All Todos "
-                ),
-                todoNodes
-            );
-        }
-    }]);
-
-    return TodoList;
-}(_react.Component);
-
-exports.default = TodoList;
-
-/***/ }),
+/* 478 */,
+/* 479 */,
 /* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -45725,6 +45532,201 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+/* 499 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchForm = function (_Component) {
+    _inherits(SearchForm, _Component);
+
+    function SearchForm(props) {
+        _classCallCheck(this, SearchForm);
+
+        var _this = _possibleConstructorReturn(this, (SearchForm.__proto__ || Object.getPrototypeOf(SearchForm)).call(this, props));
+
+        _this.state = { title: '', description: '', date: new Date(new Date() + "UTC").toISOString().substring(0, 16) };
+        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
+        _this.handleDescriptionChange = _this.handleDescriptionChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(SearchForm, [{
+        key: 'handleTitleChange',
+        value: function handleTitleChange(e) {
+            this.setState({ title: e.target.value });
+        }
+    }, {
+        key: 'handleDateChange',
+        value: function handleDateChange(e) {
+            this.setState({ date: e.target.value });
+        }
+    }, {
+        key: 'handleDescriptionChange',
+        value: function handleDescriptionChange(e) {
+            this.setState({ description: e.target.value });
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
+            var date = this.state.date.trim();
+            var title = this.state.title.trim();
+            var description = this.state.description.trim();
+            if (!description || !title || !date) {
+                return;
+            }
+            this.props.onCommentSubmit({ date: date, title: title, description: description });
+            this.setState({ title: '', description: '', date: new Date().toISOString().substring(0, 16) });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    ' Add new Job Search'
+                ),
+                _react2.default.createElement(
+                    'form',
+                    { onSubmit: this.handleSubmit },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'form-group' },
+                        _react2.default.createElement(
+                            'label',
+                            { 'for': 'exampleInputEmail1' },
+                            'Title'
+                        ),
+                        _react2.default.createElement('input', { value: this.state.title, onChange: this.handleTitleChange })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'form-group' },
+                        _react2.default.createElement(
+                            'label',
+                            { 'for': 'exampleInputEmail1' },
+                            'date'
+                        ),
+                        _react2.default.createElement('input', { type: 'datetime-local', value: this.state.date, onChange: this.handleDateChange })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'form-group' },
+                        _react2.default.createElement(
+                            'label',
+                            { 'for': '' },
+                            'Description'
+                        ),
+                        _react2.default.createElement('input', { value: this.state.description, onChange: this.handleDescriptionChange })
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        { type: 'submit', className: 'btn btn-primary' },
+                        'Add'
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        { type: 'cancel', className: 'btn btn-danger' },
+                        'Cancel'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return SearchForm;
+}(_react.Component);
+
+exports.default = SearchForm;
+
+/***/ }),
+/* 500 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SearchList = function (_Component) {
+    _inherits(SearchList, _Component);
+
+    function SearchList() {
+        _classCallCheck(this, SearchList);
+
+        return _possibleConstructorReturn(this, (SearchList.__proto__ || Object.getPrototypeOf(SearchList)).apply(this, arguments));
+    }
+
+    _createClass(SearchList, [{
+        key: "render",
+        value: function render() {
+            var searchNodes = this.props.data.map(function (search) {
+                return _react2.default.createElement(
+                    "div",
+                    { key: search._id, className: "panel panel-primary" },
+                    "Title : ",
+                    search.title
+                );
+            });
+            return _react2.default.createElement(
+                "div",
+                { className: "panel panel-success" },
+                _react2.default.createElement(
+                    "h1",
+                    null,
+                    " Previous Searches "
+                ),
+                searchNodes
+            );
+        }
+    }]);
+
+    return SearchList;
+}(_react.Component);
+
+exports.default = SearchList;
 
 /***/ })
 /******/ ]);
