@@ -4,15 +4,24 @@ import SearchList from '../components/SearchList.jsx';
 import axios from 'axios';
  
 class AppMain extends Component {
- 
+ // var elementPos = this.state.data.map(function(x) {return x._id; }).indexOf("59849076d726590490d5179f");
     constructor(props) {
         super(props);
         this.state = { data: [] };
         this.loadSearchsFromServer = this.loadSearchsFromServer.bind(this);
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
         // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-        // this.handleSearchDelete = this.handleSearchDelete.bind(this);
+        this.handleSearchDelete = this.handleSearchDelete.bind(this);
         // this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
+    }
+    handleSearchDelete(id) {
+        var elementPos = this.state.data.map(function(x) {return x._id; }).indexOf(id.id);
+        var newArray = this.state.data;
+       newArray.splice(elementPos, 1)
+       this.setState({ data: newArray });
+        console.log("Handled")
+
+        
     }
     loadSearchsFromServer() {
     axios.get("/mainapi/view/search")
@@ -72,7 +81,7 @@ class AppMain extends Component {
   
           <h2>Pick a search or add a new one</h2>
         </div>
-         <SearchList data={ this.state.data }/>
+         <SearchList onSearchDelete={this.handleSearchDelete } data={ this.state.data }/>
          <SearchForm onCommentSubmit={ this.handleCommentSubmit }/>
 
 
