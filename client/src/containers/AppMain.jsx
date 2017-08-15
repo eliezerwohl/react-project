@@ -17,11 +17,16 @@ class AppMain extends Component {
     handleSearchDelete(id) {
         var elementPos = this.state.data.map(function(x) {return x._id; }).indexOf(id.id);
         var newArray = this.state.data;
-       newArray.splice(elementPos, 1)
-       this.setState({ data: newArray });
-        console.log("Handled")
-
-        
+        newArray.splice(elementPos, 1)
+        this.setState({ data: newArray }); 
+        axios.post("/mainapi/delete/search", id)
+            .then(res => {
+                debugger
+            })
+            .catch(err => {
+                console.error(err);
+            });
+       
     }
     loadSearchsFromServer() {
     axios.get("/mainapi/view/search")

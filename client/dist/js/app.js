@@ -44588,7 +44588,11 @@ var AppMain = function (_Component) {
             var newArray = this.state.data;
             newArray.splice(elementPos, 1);
             this.setState({ data: newArray });
-            console.log("Handled");
+            _axios2.default.post("/mainapi/delete/search", id).then(function (res) {
+                debugger;
+            }).catch(function (err) {
+                console.error(err);
+            });
         }
     }, {
         key: 'loadSearchsFromServer',
