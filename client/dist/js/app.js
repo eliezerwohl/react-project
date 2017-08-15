@@ -44585,7 +44585,7 @@ var AppMain = function (_Component) {
             var newArray = this.state.data;
             newArray.splice(data.index, 1);
             this.setState({ data: newArray });
-            _axios2.default.post("/mainapi/delete/search", data).then(function (res) {}).catch(function (err) {
+            _axios2.default.delete("/mainapi/search", data).then(function (res) {}).catch(function (err) {
                 console.error(err);
             });
         }
@@ -44594,7 +44594,7 @@ var AppMain = function (_Component) {
         value: function loadSearchsFromServer() {
             var _this2 = this;
 
-            _axios2.default.get("/mainapi/view/search").then(function (res) {
+            _axios2.default.get("/mainapi/search").then(function (res) {
                 _this2.setState({ data: res.data });
             }).catch(function (err) {
                 console.error(err);
@@ -44610,7 +44610,7 @@ var AppMain = function (_Component) {
             // let newComments = comments.concat([comment]);
             // this.setState({ data: newComments });
             // axios.post(this.props.url + '/mainapi'+'/Search/'+comment.id, comment)
-            _axios2.default.post('/mainapi/create/search', comment).then(function (data) {
+            _axios2.default.post('/mainapi/search', comment).then(function (data) {
                 var comments = _this3.state.data;
                 var newComments = comments.concat([data.data]);
                 _this3.setState({ data: newComments });

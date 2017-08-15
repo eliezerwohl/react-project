@@ -2,7 +2,10 @@ const express = require('express');
 
 const router = new express.Router();
 const Search = require("../models/search");
-router.post('/create/search', (req, res, next) => {
+
+
+router.route('/search')
+.post(function(req, res, next) {
 	Search.create({
     title:req.body.title,
     date:req.body.date,
@@ -11,25 +14,22 @@ router.post('/create/search', (req, res, next) => {
   }).then(function(data, error) {
     res.send(data._doc);
   })
-});
-
-router.get('/view/search', (req, res, next) => {
+})
+.get(function(req, res, next) {
 	Search.find({
     _user:req.session.passport.user
   }).then(function(data, error) {
     res.send(data);
   })
-});
-
-router.post('/delete/search', (req, res, next) => {
-  debugger
+})
+.delete(function(req, res, next) {
   Search.remove({
     _user:req.session.passport.user,
     _id:req.body.id
   }).then(function(data, error) {
     res.send(data);
   })
-});
+})
 
 router.post('/', (req, res, next) => {
   res.status(200).json({
