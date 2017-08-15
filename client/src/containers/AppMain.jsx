@@ -18,7 +18,7 @@ class AppMain extends Component {
         var newArray = this.state.data;
         newArray.splice(data.index, 1)
         this.setState({ data: newArray }); 
-        axios.post("/mainapi/delete/search", data)
+        axios.delete("/mainapi/search", data)
             .then(res => {
             })
             .catch(err => {
@@ -27,7 +27,7 @@ class AppMain extends Component {
        
     }
     loadSearchsFromServer() {
-    axios.get("/mainapi/view/search")
+    axios.get("/mainapi/search")
         .then(res => {
             this.setState({ data: res.data });
         })
@@ -41,7 +41,7 @@ class AppMain extends Component {
         // let newComments = comments.concat([comment]);
         // this.setState({ data: newComments });
         // axios.post(this.props.url + '/mainapi'+'/Search/'+comment.id, comment)
-        axios.post('/mainapi/create/search', comment)
+        axios.post('/mainapi/search', comment)
             .then(data => {
               let comments = this.state.data;
               let newComments = comments.concat([data.data]);
