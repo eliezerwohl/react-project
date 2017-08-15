@@ -44581,16 +44581,11 @@ var AppMain = function (_Component) {
 
     _createClass(AppMain, [{
         key: 'handleSearchDelete',
-        value: function handleSearchDelete(id) {
-            var elementPos = this.state.data.map(function (x) {
-                return x._id;
-            }).indexOf(id.id);
+        value: function handleSearchDelete(data) {
             var newArray = this.state.data;
-            newArray.splice(elementPos, 1);
+            newArray.splice(data.index, 1);
             this.setState({ data: newArray });
-            _axios2.default.post("/mainapi/delete/search", id).then(function (res) {
-                debugger;
-            }).catch(function (err) {
+            _axios2.default.post("/mainapi/delete/search", data).then(function (res) {}).catch(function (err) {
                 console.error(err);
             });
         }
@@ -44844,16 +44839,13 @@ var SearchList = function (_Component) {
 
     _createClass(SearchList, [{
         key: "deleteSearch",
-        value: function deleteSearch(id) {
-            console.log("delete serach");
-            this.props.onSearchDelete({ id: id });
+        value: function deleteSearch(data) {
+            this.props.onSearchDelete(data);
         }
     }, {
         key: "render",
         value: function render() {
-            var _this2 = this;
-
-            var searchNodes = this.props.data.map(function (search) {
+            var searchNodes = this.props.data.map(function (search, i) {
                 return _react2.default.createElement(
                     "div",
                     { key: search._id, className: "panel panel-primary" },
@@ -44862,11 +44854,11 @@ var SearchList = function (_Component) {
                     " ",
                     _react2.default.createElement(
                         "button",
-                        { onClick: _this2.deleteSearch.bind(null, search._id) },
+                        { onClick: this.deleteSearch.bind(null, { id: search._id, index: i }) },
                         " "
                     )
                 );
-            });
+            }, this);
             return _react2.default.createElement(
                 "div",
                 { className: "panel panel-success" },

@@ -14,14 +14,12 @@ class AppMain extends Component {
         this.handleSearchDelete = this.handleSearchDelete.bind(this);
         // this.handleSearchUpdate = this.handleSearchUpdate.bind(this);
     }
-    handleSearchDelete(id) {
-        var elementPos = this.state.data.map(function(x) {return x._id; }).indexOf(id.id);
+    handleSearchDelete(data) {
         var newArray = this.state.data;
-        newArray.splice(elementPos, 1)
+        newArray.splice(data.index, 1)
         this.setState({ data: newArray }); 
-        axios.post("/mainapi/delete/search", id)
+        axios.post("/mainapi/delete/search", data)
             .then(res => {
-                debugger
             })
             .catch(err => {
                 console.error(err);
@@ -30,15 +28,12 @@ class AppMain extends Component {
     }
     loadSearchsFromServer() {
     axios.get("/mainapi/view/search")
-            .then(res => {
-                this.setState({ data: res.data });
-            })
-            .catch(err => {
-                console.error(err);
-            });
-  
-        
-
+        .then(res => {
+            this.setState({ data: res.data });
+        })
+        .catch(err => {
+            console.error(err);
+        });
     }
     handleCommentSubmit(comment) {
         // let comments = this.state.data;
