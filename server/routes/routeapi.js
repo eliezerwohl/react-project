@@ -9,7 +9,6 @@ router.post('/create/search', (req, res, next) => {
     description:req.body.description,
     _user:req.session.passport.user
   }).then(function(data, error) {
-
     res.send(data._doc);
   })
 });
@@ -17,6 +16,16 @@ router.post('/create/search', (req, res, next) => {
 router.get('/view/search', (req, res, next) => {
 	Search.find({
     _user:req.session.passport.user
+  }).then(function(data, error) {
+    res.send(data);
+  })
+});
+
+router.post('/delete/search', (req, res, next) => {
+  debugger
+  Search.remove({
+    _user:req.session.passport.user,
+    _id:req.body.id
   }).then(function(data, error) {
     res.send(data);
   })
